@@ -49,13 +49,12 @@ def api_check_futsal_court():
     for br_elm in soup.find_all('br'):
         br_elm.decompose()
     
-    for br_elm in soup.select('.uline'):
-        br_elm.decompose()
+    for uline_elm in soup.select('.uline'):
+        uline_elm.decompose()
 
     #4. 空いている日時を取得する
     free_courts = soup.select(".free > span > p")
     free_courts = [free_court.get_text(strip=True)  for free_court in free_courts]
-    print(free_courts)
         
     #5. 以下の形式で返却する.
     return json.dumps(free_courts, ensure_ascii=False)
